@@ -1,0 +1,28 @@
+name: project-test
+
+services:
+  # Backend - FastAPI
+  backend:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env.test
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Database - PostgreSQL (test instance, no port exposed - internal only)
+  db:
+    image: postgres:18-alpine
+    env_file:
+      - .env.test
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      timeout: 10s
+      retries: 10
+      interval: 3s

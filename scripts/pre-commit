@@ -1,0 +1,42 @@
+#!/bin/bash
+# Git pre-commit hook: run tests + lint + typecheck
+# Shows output only on failure
+
+# Tests
+output=$(make test-quick 2>&1)
+status=$?
+
+if [ $status -ne 0 ]; then
+    echo "=================================="
+    echo "❌ Tests failed. Commit blocked."
+    echo "=================================="
+    echo "$output"
+    exit 1
+fi
+
+# Lint
+output=$(make lint 2>&1)
+status=$?
+
+if [ $status -ne 0 ]; then
+    echo "=================================="
+    echo "❌ Lint failed. Commit blocked."
+    echo "=================================="
+    echo "$output"
+    exit 1
+fi
+
+# Type check
+output=$(make typecheck 2>&1)
+status=$?
+
+if [ $status -ne 0 ]; then
+    echo "=================================="
+    echo "❌ Type check failed. Commit blocked."
+    echo "=================================="
+    echo "$output"
+    exit 1
+fi
+
+# Success: silent
+exit 0
