@@ -3,106 +3,106 @@
 ## Setup (5 min)
 
 ```bash
-# Installer les hooks git (bloque si tests rouges, lint KO ou types KO)
+# Install git hooks (blocks if tests fail, lint fails or types fail)
 ./scripts/install-hooks.sh
 
-# Recherche sémantique (optionnel mais recommandé)
+# Semantic search (optional but recommended)
 curl -sSL https://raw.githubusercontent.com/yoanbernabeu/grepai/main/install.sh | sh
 grepai init
-grepai watch  # Lance l'indexation continue en arrière-plan
+grepai watch  # Launches continuous indexing in the background
 
-# Lancer Claude
+# Start Claude
 claude
 ```
 
 ## grepai
 
-`grepai` indexe le code en continu et permet à Claude de faire de la recherche sémantique (par intention) plutôt que par texte exact. Ça économise des tokens et donne de meilleurs résultats.
+`grepai` continuously indexes the code and allows Claude to perform semantic search (by intent) rather than exact text matching. It saves tokens and gives better results.
 
-- `grepai init` : crée l'index initial du projet
-- `grepai watch` : surveille les changements et met à jour l'index en continu (à lancer dans un terminal dédié ou en background avec `grepai watch &`)
+- `grepai init` : creates the initial project index
+- `grepai watch` : monitors changes and continuously updates the index (run in a dedicated terminal or in background with `grepai watch &`)
 
-## Philosophie
+## Philosophy
 
-> **L'intention humaine est le contrat. Les tests le prouvent.**
+> **Human intent is the contract. Tests prove it.**
 
-4 commandes spécialisées, chacune avec son propre contexte isolé.
+4 specialized commands, each with its own isolated context.
 
-## Les 4 commandes
+## The 4 Commands
 
-| Commande | Rôle |
-|----------|------|
-| `/clarify` | Clarifie le besoin → spec |
-| `/specify` | Génère les tests (doivent échouer) |
-| `/implement` | Écrit le code (tests passent) |
-| `/refactor` | Améliore le code (tests restent verts) |
+| Command | Role |
+|---------|------|
+| `/clarify` | Clarifies the need → spec |
+| `/specify` | Generates tests (must fail) |
+| `/implement` | Writes the code (tests pass) |
+| `/refactor` | Improves code (tests stay green) |
 
-## Utilisation
+## Usage
 
-**Option 1 : Laisser Claude choisir**
-
-```
-> Je veux permettre l'annulation de commande
-
-Claude: [utilise automatiquement clarifier]
-        C'est quoi le comportement attendu ?
-```
-
-**Option 2 : Demander explicitement**
+**Option 1: Let Claude choose**
 
 ```
-> /clarify annulation de commande
+> I want to allow order cancellation
+
+Claude: [automatically uses clarify]
+        What's the expected behavior?
+```
+
+**Option 2: Ask explicitly**
+
+```
+> /clarify order cancellation
 > /specify
 > /implement
 ```
 
-## Exemple complet
+## Full Example
 
 ```
-> /clarify annulation de commande
+> /clarify order cancellation
 
-Claude: C'est quoi le comportement attendu ?
+Claude: What's the expected behavior?
 
-> Le client peut annuler si < 24h et pas expédiée
+> The customer can cancel if < 24h and not shipped
 
-Claude: Et si les conditions sont pas remplies ?
+Claude: And if the conditions aren't met?
 
-> Erreur avec le motif
+> Error with the reason
 
-Claude: OK, je résume :
-- Client annule sa commande
-- OK si < 24h ET non expédiée
-- Sinon erreur "Too late" ou "Already shipped"
-Correct ?
+Claude: OK, let me summarize:
+- Customer cancels their order
+- OK if < 24h AND not shipped
+- Otherwise error "Too late" or "Already shipped"
+Correct?
 
-> Oui
+> Yes
 
-Claude: Spec écrite. /clear puis /specify
+Claude: Spec written. /clear then /specify
 
 > /specify
 
-Claude: Tests générés. Ils échouent. /clear puis /implement
+Claude: Tests generated. They fail. /clear then /implement
 
 > /implement
 
-Claude: Code écrit. Tests passent.
+Claude: Code written. Tests pass.
 
 > git commit -m "[domain/order] add cancellation rule"
 
-✅ Commit OK (pre-commit vérifie tests + lint + types)
+✅ Commit OK (pre-commit verifies tests + lint + types)
 ```
 
-## Infra et autres tâches
+## Infrastructure and other tasks
 
-Pour tout ce qui n'est pas du code métier (Docker, CI, config...), parle directement :
+For anything that's not business logic code (Docker, CI, config...), just ask directly:
 
 ```
-> Dockerise le projet
+> Dockerize the project
 ```
 
-Pas besoin de commandes spécialisées pour ça.
+No need for specialized commands for that.
 
-## Protection automatique
+## Automatic Protection
 
-- **Hook pre-commit** : Bloque si tests rouges, lint KO ou types KO
-- **Hook Claude** : Bloque si architecture violée (imports interdits, dataclass non frozen)
+- **Pre-commit hook**: Blocks if tests fail, lint fails or types fail
+- **Claude hook**: Blocks if architecture is violated (forbidden imports, non-frozen dataclass)

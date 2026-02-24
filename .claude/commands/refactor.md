@@ -38,12 +38,12 @@ Ask yourself: "If the business rule changes for one case, should it change for t
 
 **Do NOT start coding. Present your observations first.**
 
-> Voici ce que j'ai identifié :
+> Here's what I identified:
 >
 > 1. {observation} → {proposed change}
 > 2. {observation} → {proposed change}
 >
-> Tu valides ? Tu veux que je modifie/retire quelque chose ?
+> Do you approve? Want me to modify or remove anything?
 
 **Wait for explicit validation before touching any code.**
 
@@ -67,9 +67,9 @@ All tests must still pass.
 
 ## Step 6: Done
 
-> Refactoring terminé. Tests toujours verts.
+> Refactoring complete. Tests still green.
 >
-> Changements :
+> Changes:
 > - {list}
 >
-> Tu peux `git commit`.
+> You can `git commit`.

@@ -1,5 +1,5 @@
 # Vibe Coding Backend Python
 
-Template de projet Python optimisé pour le développement assisté par IA (vibe coding). Architecture hexagonale, TDD, hooks de protection automatiques.
+Python project template optimized for AI-assisted development (vibe coding). Hexagonal architecture, TDD, automatic protection hooks.
 
-Voir [QUICKSTART.md](QUICKSTART.md) pour démarrer.
+See [QUICKSTART.md](QUICKSTART.md) to get started.

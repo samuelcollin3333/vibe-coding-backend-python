@@ -12,8 +12,8 @@ cat Makefile 2>/dev/null | head -20 || echo "NO_MAKEFILE"
 ```
 
 If no Makefile, stop and ask:
-> Pas de Makefile trouvé. Comment lances-tu les tests ?
-> Je peux générer un Makefile si tu me dis quelle commande utiliser (docker, python, etc.)
+> No Makefile found. How do you run the tests?
+> I can generate a Makefile if you tell me which command to use (docker, python, etc.)
 
 ## Step 2: Read spec
 
@@ -21,7 +21,7 @@ If no Makefile, stop and ask:
 cat .claude/temp/spec.md
 ```
 
-If no spec, stop: "Pas de spec. Lance `/clarify` d'abord."
+If no spec, stop: "No spec found. Run `/clarify` first."
 
 ## Step 3: List test cases
 
@@ -31,16 +31,16 @@ From the spec, identify:
 
 ## Step 4: Verify with user
 
-> D'après la spec, voici les cas que je vais tester :
+> Based on the spec, here are the cases I'll test:
 >
-> ✓ Succès :
+> ✓ Success:
 > - {case 1}
 > - {case 2}
 >
-> ✗ Échec :
+> ✗ Failure:
 > - {case 3} → {error}
 >
-> Il manque des cas ?
+> Any missing cases?
 
 **Wait for confirmation.**
 
@@ -115,6 +115,6 @@ make test 2>&1 | tail -20
 
 ## Step 7: Next step
 
-> Tests créés. Ils échouent (normal).
+> Tests created. They fail (as expected).
 >
-> Prochaine étape : `/clear` puis `/implement`
+> Next step: `/clear` then `/implement`

@@ -69,9 +69,9 @@ grepai search "API routes or endpoint registration" --json --compact 2>/dev/null
    - Proper HTTP status codes (201 for creation, 204 for deletion, etc.)
 
 3. Inform the user:
-> Endpoint créé : `{METHOD} /api/{resource}`
-> Request body / Query params : {describe}
-> Response : {describe}
+> Endpoint created: `{METHOD} /api/{resource}`
+> Request body / Query params: {describe}
+> Response: {describe}
 
 **If unsure whether an endpoint is needed, ask.**
 
@@ -83,17 +83,17 @@ Re-read the spec. Ask yourself:
 - Can the frontend actually call this feature?
 
 If doubt:
-> Le code fait passer les tests, mais je vérifie :
+> The code passes the tests, but let me verify:
 > [describe what code does]
-> C'est bien ça ?
+> Is that correct?
 
 ## Step 9: Done
 
-> Implémentation terminée. Tests passent.
+> Implementation complete. Tests pass.
 >
-> Fichiers créés :
+> Files created:
 > - {list}
 >
-> Endpoint : `{METHOD} /api/{resource}` (si applicable)
+> Endpoint: `{METHOD} /api/{resource}` (if applicable)
 >
-> Tu peux `git commit` ou `/clear` puis `/refactor` si besoin.
+> You can `git commit` or `/clear` then `/refactor` if needed.

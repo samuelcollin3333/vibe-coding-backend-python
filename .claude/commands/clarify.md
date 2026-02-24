@@ -16,24 +16,24 @@ grepai search "$ARGUMENTS" 2>/dev/null | head -10 || grep -rn "$ARGUMENTS" src/ 
 **Ask questions until the need is crystal clear.**
 
 Start with:
-> Explique-moi ce que tu veux, dans tes mots.
+> Tell me what you want, in your own words.
 
 Then ask what's missing:
-- **Qui ?** - Qui déclenche cette action ?
-- **Quoi ?** - Concrètement, il se passe quoi ?
-- **Quand ?** - Dans quelles conditions ça marche ?
-- **Sinon ?** - Qu'est-ce qui se passe si les conditions ne sont pas remplies ?
+- **Who?** - Who triggers this action?
+- **What?** - Concretely, what happens?
+- **When?** - Under what conditions does it work?
+- **Otherwise?** - What happens if the conditions aren't met?
 
 **Don't ask questions already answered.**
 
 ## Step 3: Reformulate and confirm
 
-> Si je comprends bien :
-> - [Qui] fait [Quoi]
-> - Ça marche si [conditions]
-> - Sinon [comportement d'erreur]
+> If I understand correctly:
+> - [Who] does [What]
+> - It works if [conditions]
+> - Otherwise [error behavior]
 >
-> C'est correct ?
+> Is that correct?
 
 **Wait for explicit confirmation.**
 
@@ -62,6 +62,6 @@ Create `.claude/temp/spec.md`:
 
 ## Step 5: Next step
 
-> Spec écrite dans `.claude/temp/spec.md`
+> Spec written in `.claude/temp/spec.md`
 >
-> Prochaine étape : `/clear` puis `/specify`
+> Next step: `/clear` then `/specify`

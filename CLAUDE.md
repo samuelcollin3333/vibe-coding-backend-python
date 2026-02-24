@@ -2,9 +2,9 @@
 
 ## Philosophy
 
-> **L'intention humaine est le contrat. Les tests le prouvent.**
+> **Human intent is the contract. Tests prove it.**
 
-Clarifier d'abord → Tests ensuite → Code minimal.
+Clarify first → Tests next → Minimal code.
 
 ## IMPORTANT: Use Makefile
 
